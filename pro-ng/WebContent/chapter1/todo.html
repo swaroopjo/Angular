@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="todoApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapter 1 Test Imports</title>
+<link href="/pro-ng/resources/bootstrap/css/bootstrap.css"  rel="stylesheet" >
+<link href="/pro-ng/resources/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+	<script type="text/javascript" src="/pro-ng/resources/jslib/angular1.2.5.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.js"></script>
+<script>
+
+/**
+ * 
+ *	Declare the module with a uniqueName that will be used on the html page. 
+ *	If you would like abother module to be injected, add it inside this array. 
+ *	Modulses are different from services. Ex: $routeProvider, todoApp, are modules. services are $location, $http etc. 
+ */
+var todoApp = angular.module("todoApp"[]);
+
+/**
+ * 	Factory is used to define the services. This can be injected with any ither services like $http or $location. 
+ *	Takes service Name and a function. Returns an Object literal with boilercode functions. 
+ */
+todoApp.factory("todoService",function($http, $location){
+	
+	return {
+		saveTodo: function(){
+			
+				console.log("Saving Todo into database");
+			}
+	
+			,deleteTodo:function(description){
+				console.log("Deleting Todo from database : "+description);
+			}
+			
+	};
+});
+
+/*
+ *	Declare the controller, inject with $scope, and the service. Observe there is no $ sign while injecting the services. 
+ 	The Html components and values are binded using $scope. 
+ 	If you want to bind a html input to controller,
+ 		then use ng-model="user.name" on input tag, $scope.user.name will give the value. You have to declare this user under the scope in your controller before using it. 
+ 	If you want to send some data to the controller method with out binding as a parameter, 
+ 		use ng-model="itemIndex" call the method save(itemIndex)
+ 		COntroller functions can be called from html only if it is under controller scope. 
+ */
+todoApp.controller("todoController",function($scope, todoService){
+	
+	$scope.todo = {user:"Swaroop",
+					items:[]
+					};
+	   
+	$scope.todo.items = [{description: "Buy Flowers",done:"no"},
+	                 {description:"Get Shoes",done:"no"},
+	                 {description:"Call Joe",done:"no"}];
+	
+	$scope.addItemToList = function(textVal){
+		$scope.todo.items.push({"description":textVal,"done":"no"});
+	};
+	
+	$scope.incompleteCount = function(){
+			var count = 0;
+			angular.forEach($scope.todo.items, function(item){
+				
+				if(item.done == 'no'){
+					count++;
+				}
+				
+			});
+			return count;
+	};
+	
+	$scope.remove = function(item){
+		todoService.deleteTodo(item.description);
+	};
+	
+	});
+	
+	
+	
+</script>
+</head>
+<body style="margin-left:100px;margin-right:100px;margin-top:50px;" ng-controller="todoController">
+	<div class="page-header">
+		<h4>{{todo.user}} Todo List.</h4> <span class="label label-default" ng-hide="incompleteCount() == 0">Total Incomplete = {{incompleteCount()}}</span>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="input-group">
+			<input class="form-control" type="text" ng-model="actionText"/>
+			<span class="input-group-btn">
+				<button class="btn btn-default" ng-click="addItemToList(actionText)">Add</button>
+				
+			</span>
+		</div>
+	
+	</div>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Description</th>
+				<th>Done</th>
+			</tr>
+		</thead>
+		<tbody> 
+			<tr ng-repeat="item in todo.items">
+				<td>{{item.description}}</td>
+				<td>{{item.done}}</td>
+				<td><button class="btn btn-default" ng-click="remove(item)">Remove</button></td>
+				<td><input type="checkbox" ng-model="item.done"/></td>
+			</tr>
+			</tbody>
+	</table>
+</body>
+</html>

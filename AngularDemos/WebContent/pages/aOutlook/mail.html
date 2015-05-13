@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="/AngularDemos/resources/js/controllers/angularmail.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Mail</title>
+
+</head>
+<body>
+	<div style="margin-top:20px;margin-left:30px;" ng-controller="mailController">
+			<table>
+				<tr ng-repeat="mail in mails">
+				
+					<td>{{mail.sender}}</td>
+					<td><a href='#/detail/{{mail.id}}'>{{mail.subject}}</a></td>
+					<td>{{mail.date}}</td>
+				</tr>
+			</table>
+		<br/>
+		Hello
+	</div>
+	
+</body>
+</html>
