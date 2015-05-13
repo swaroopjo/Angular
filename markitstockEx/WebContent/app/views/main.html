@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="markitstockEx">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Stocks</title>
+</head>
+<body ng-controller='mainController'>
+	<div class="row">
+		<!-- Configure Error messages with Watch. Changes to the error text does not refresh this div 
+<div class="alert alert-info">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Info</strong> {{message.text}}.
+    </div>
+    -->
+		<h3>
+			Stock Lookup <span class="label label-default">{{txtInput}}</span>
+		</h3>
+		<div class="col-md-6 column">
+			<input type="text" class="form-control" ng-model="txtInput" /> <br />
+			<div></div>
+		</div>
+		<div class="col-md-2 column">
+			<button class="btn btn-default" ng-click="lookup(txtInput)">Lookup</button>
+		</div>
+
+	</div>
+	<br />
+	<div class="row" ng-show="matches.length > 0">
+		<table class="table table-hover">
+			<caption>Matches for {{txtInput}}</caption>
+			<thead>
+				<tr>
+					<th>Symbol</th>
+					<th>Name</th>
+					<th>Exchange</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="match in matches">
+					<td>{{match.Symbol}}</td>
+					<td>{{match.Name}}</td>
+					<td>{{match.Exchange}}</td>
+					<td><button ng-click="getQuote(match.Symbol)">Get
+							Quote</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br />
+	<div class="row" ng-show="stock != null">
+
+		<table class="table table-hover">
+			<caption>Stock Details</caption>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Symbol</th>
+					<th>Last Price</th>
+					<th>Change</th>
+					<th>Change Percent</th>
+					<th>MSDate</th>
+					<th>MarketCap</th>
+					<th>Volume</th>
+					<th>Change YTD</th>
+					<th>High</th>
+					<th>Low</th>
+					<th>Open</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{stock.Name}}</td>
+					<td>{{stock.Symbol}}</td>
+					<td>{{stock.LastPrice}}</td>
+					<td>{{stock.Change}}</td>
+					<td>{{stock.ChangePercent}}</td>
+					<td>{{stock.MSDate}}</td>
+					<td>{{stock.MarketCap}}</td>
+					<td>{{stock.Volume}}</td>
+					<td>{{stock.ChangeYTD}}</td>
+					<td>{{stock.High}}</td>
+					<td>{{stock.Low}}</td>
+					<td>{{stock.Open}}</td>
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
