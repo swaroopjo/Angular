@@ -7,16 +7,20 @@
 <link href="/markitstockEx/app/resources/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
 	<script type="text/javascript" src="/markitstockEx/app/resources/jslib/angular1.2.5.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.js"></script>
+	<script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
 	
 	<script type="text/javascript" src="/markitstockEx/app/scripts/app.js"></script>
 	<script type="text/javascript" src="/markitstockEx/app/scripts/services.js"></script>
 	
-	<script type="text/javascript" src="/markitstockEx/app/scripts/controllers/mainController.js"></script>
+	<script type="text/javascript" src="/markitstockEx/app/scripts/controllers/controllers.js"></script>
 <script>
 
 </script>
 </head>
 <body style="margin-left:100px;margin-right:100px;margin-top:50px;" ng-app="markitstockEx">
+<!-- Not sure why This has to be embedded in singlequotes and then double quotes. Wiered -->
+<!--  Check if the user exists in the rootScope -->
+<div ng-include='"/markitstockEx/app/views/template/header.html"' ng-show="$root.globals.currentUser.username"></div>
 	<div ng-view></div>
 </body>
 </html>

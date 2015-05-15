@@ -4,23 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Stocks</title>
 </head>
-<body ng-controller='mainController'>
+<body ng-controller='lookupController'>
+
 	<div class="row">
-		<!-- Configure Error messages with Watch. Changes to the error text does not refresh this div 
-<div class="alert alert-info">
+		<!-- Configure Error messages with Watch. Changes to the error text does not refresh this div -->
+<div class="alert alert-error" ng-show="message.error">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Info</strong> {{message.text}}.
     </div>
-    -->
+    
 		<h3>
 			Stock Lookup <span class="label label-default">{{txtInput}}</span>
 		</h3>
 		<div class="col-md-6 column">
-			<input type="text" class="form-control" ng-model="txtInput" /> <br />
-			<div></div>
+			<input type="text" class="form-control" ng-model="txtInput" style="height:30px;"/>
+			
 		</div>
 		<div class="col-md-2 column">
-			<button class="btn btn-default" ng-click="lookup(txtInput)">Lookup</button>
+			<button class="btn btn-default" ng-click="lookup(txtInput)" style="height:30px;">Lookup</button>
 		</div>
 
 	</div>
