@@ -4,6 +4,7 @@ app.factory("markitService",function($http, $location){
 	return {
 		lookup: function(text,showResult){
 			console.log("looking up Market API with partial Name: "+text);	
+			//Call back function is executed when the success is called. This is Just a workaround for CrossDomain Issue. 
 			var JSON_CALLBACK = function(response){
 				console.log("Callback function called");
 				//showResult(response)
