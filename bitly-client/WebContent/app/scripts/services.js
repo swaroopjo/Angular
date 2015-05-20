@@ -1,4 +1,67 @@
 
+app.factory("oAuthService",function($rootScope,$location,$cookieStore,$http, $window){
+	var clientID = "";
+	var bitlysecureURL = 'https://bitly.com/oauth/authorize?state=&redirect_uri=http%3A%2F%2Flocalhost%3A8030%2Fbitly-client%2F%23%2Foauth_page&client_id=';
+	
+	var redirectToBitly = function(){
+		
+		  $rootScope.globals.clientId = '9d5850519e3f95c486ea42907a28972f96ef1008';
+		  $rootScope.globals.accessCode = "";
+		  $cookieStore.put('globals', $rootScope.globals);
+		  $window.location.href = bitlysecureURL+$rootScope.globals.clientId;
+		  
+	};
+	var extractCodeFromURL = function(){
+		var absURL = $location.absUrl();
+		  var code = absURL.match(/code=[0-9,a-z,A-Z]+/g)+"";
+		  var code = code.replace("code=","");
+		  if(code != ""){
+			  console.log("Code received... setting cookie..");
+			  $rootScope.globals.accessCode = code;
+			  $cookieStore.put('globals', $rootScope.globals);
+		  }
+		  else{
+			  $window.location.href = bitlysecureURL+$rootScope.globals.clientId;
+		  }
+		
+	};
+	var refreshToken = function(){
+		  console.log("Getting Token from access Code...");
+		$http.post("https://api-ssl.bitly.com/oauth/access_token?client_id=9d5850519e3f95c486ea42907a28972f96ef1008&client_secret=c421bd7e291344b6f784eccdae88b0a664a2a843&code="+$rootScope.globals.accessCode+
+	  				"&redirect_uri=http%3A%2F%2Flocalhost%3A8030%2Fbitly-client%2F%23%2Foauth_page")
+	  			.success(function(data){
+	  				
+	  			}).error(function(data){
+	  				console.log("Error occured with https Request.")
+	  			}).then(function(response){
+	  				console.log(response.data.status_txt);
+	  				if(response.data.status_txt == "INVALID_CODE"){
+	  					//$rootScope.globals.accessCode = "";
+	  					redirectToBitly();
+	  				}
+	  				else{
+	  					var temp = response.data.match(/access_token=[a-z,A-Z,0-9]+/g)+"";
+	  					var accessToken = temp.replace("access_token=","");
+	  					$rootScope.globals.accessToken = accessToken;
+	  					
+	  					temp = response.data.match(/login=[a-z,A-Z,0-9]+/g)+"";
+	  					var userName = temp.replace("login=","");
+	  					$rootScope.globals.userName = userName; 
+	  					
+	  					$cookieStore.put('globals',$rootScope.globals);
+	  					$location.path("/lookup");
+	  				}
+	  			});
+		
+	};
+	
+	return {
+		redirectToBitlySSL: redirectToBitly,
+		getAccessCode:extractCodeFromURL,
+		refreshToken:refreshToken
+	};
+});
+
 app.factory("markitService",function($http, $location){
 	
 	return {

@@ -1,4 +1,12 @@
 
+app.controller('accessController',function($scope,$location){
+
+		console.log($location.search);
+		console.log($location.search().code);
+	
+});
+
+
 app.controller("homeController",function($scope,markitService){
 	
 	

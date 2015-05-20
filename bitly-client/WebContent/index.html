@@ -2,25 +2,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mark It Stock Exchange</title>
-<link href="/markitstockEx/app/resources/bootstrap/css/bootstrap.css"  rel="stylesheet" >
-<link href="/markitstockEx/app/resources/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
-	<script type="text/javascript" src="/markitstockEx/app/resources/jslib/angular1.2.5.js"></script>
+<title>Bitly Client</title>
+<link href="/bitly-client/app/resources/bootstrap/css/bootstrap.css"  rel="stylesheet" >
+<link href="/bitly-client/app/resources/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+	<script type="text/javascript" src="/bitly-client/app/resources/jslib/angular1.2.5.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.js"></script>
 	<script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
 	
-	<script type="text/javascript" src="/markitstockEx/app/scripts/app.js"></script>
-	<script type="text/javascript" src="/markitstockEx/app/scripts/services.js"></script>
+	<script type="text/javascript" src="/bitly-client/app/scripts/app.js"></script>
+	<script type="text/javascript" src="/bitly-client/app/scripts/services.js"></script>
 	
-	<script type="text/javascript" src="/markitstockEx/app/scripts/controllers/controllers.js"></script>
+	<script type="text/javascript" src="/bitly-client/app/scripts/controllers/controllers.js"></script>
 <script>
 
 </script>
 </head>
-<body  ng-app="markitstockEx">
+<body  ng-app="bitly-client">
 <!-- Not sure why This has to be embedded in singlequotes and then double quotes. Wiered -->
 <!--  Check if the user exists in the rootScope -->
-<div ng-include='"/markitstockEx/app/views/template/header.html"' ng-show="$root.globals.currentUser.username"></div>
+<div ng-include='"/bitly-client/app/views/template/header.html"' ng-show="$root.globals.userName"></div>
 	<div ng-view></div>
 </body>
 </html>

@@ -1,56 +1,52 @@
 
-var app = angular.module('markitstockEx', [
+var app = angular.module('bitly-client', [
   'ngRoute',
   'ngCookies'
 ]);
 	
 	app
-	.config(['$routeProvider',
-	                    function($routeProvider) {
+	.config(function($routeProvider) {
 		$routeProvider.when('/',{
-			templateUrl:'/markitstockEx/app/views/home.html',
+			templateUrl:'/bitly-client/app/views/home.html',
 			controller:'homeController'
 		})
 		.when('/lookup',{
-			templateUrl:'/markitstockEx/app/views/lookup.html',
+			templateUrl:'/bitly-client/app/views/lookup.html',
 			controller:'lookupController'
 		})
 		.when('/login',{
-			templateUrl:'/markitstockEx/app/views/login.html',
+			templateUrl:'/bitly-client/app/views/login.html',
 			controller:'loginController'
+		})
+		.when('/oauth_page',{
+			templateUrl:'/bitly-client/app/views/home.html',
+			controller:'accessController'
 		})
 		.otherwise({
 	        redirectTo: '/'
 	      });
-	                    }]);
+	        });
 	  app.config(function($httpProvider) {
 	      //Enable cross domain calls
 	      $httpProvider.defaults.useXDomain = true;
 
 	      //Remove the header used to identify ajax call  that would prevent CORS from working
-	      delete $httpProvider.defaults.headers.common['X-Requested-With'];
-	  }).run(function($rootScope,$location,$cookieStore,$http, $window){
+	      delete $ht tpProvider.defaults.headers.common['X-Requested-With'];
+	  }).run(function($rootScope,$location,$cookieStore,$http, $window, oAuthService){
 		  console.log("Inside Run function...Checking Authorization");
-		  //Get currentUserObject from local store if present. 
-		  $window.localStorage['auth_code'] = null;
-		  var auth_code = JSON.parse($window.localStorage['auth_code']);
-		  if(!auth_code){
-			  console.log("User not authorized. Sending user to Bityly Secure Login");
-			  $window.location.href = 'https://bitly.com/oauth/authorize?&redirect_uri=http://localhost:8030/bitly-client/oauth_page&client_id=9d5850519e3f95c486ea42907a28972f96ef1008'
-		  }
+		  
+		  // If the cookie has the clientID then look for an access code
+		  // If access code is not found
+		  	 
 		  $rootScope.globals = $cookieStore.get('globals') || {};
-		 //Check if the globals are present in the cookie
-		  //If user is present, then set the AUthorization header to Basic username:password (encrypted)
-		  // The global should have an object of type currentUser:{userName:"",authData:""}
-		  if($rootScope.globals.currentUser){
-			  $http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.globals.currentUser.authData;
-			  console.log("Setting http headers");
+		  if(!$rootScope.globals.clientId){
+			  console.log("Client ID not found in the cookie... Setting it.");
+			  oAuthService.redirectToBitlySSL();
+			  return;
 		  }
-		  //For every Page change check if the current user exists.
-		  $rootScope.$on('$routeChangeStart',function(event,next,current){
-			  if($location.path() !== '/login' && !$rootScope.globals.currentUser){
-				  $location.path('/login');
-				  console.log("Checking if user exists...");
-			  }
-		  });
+			  console.log("Extract Access Code from URL");
+			  oAuthService.getAccessCode();
+			 console.log("Getting Access Token");
+			oAuthService.refreshToken();
+		 
 	  });
