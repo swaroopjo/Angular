@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='oneClientApp'>
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap 3, from LayoutIt!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.js"></script>
+	<script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/controller.js"></script>
+  <script src="js/services/service.js"></script>
+</head>
+
+<body>
+<div class="container" ng-controller='mainController'>
+	<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Private Cloud</a></li>
+        </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/google">Google</a></li>
+            <li><a href="#">Dropbox</a></li>
+            <li><a href="#">Sky Drive</a></li>
+            <li class="divider"></li>
+          </ul>
+        </li>
+        <li class="active"><a href="#">Settings</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+	<div class="row clearfix">
+
+		<div class="col-md-2 column">
+			<div class="list-group">
+  <a href="#googledrive" class="list-group-item">Google Drive</a>
+  <a href="#dropbox" class="list-group-item">Dropbox</a>
+  <a href="#skydrive" class="list-group-item">Skydrive</a>
+  <a href="#icloud" class="list-group-item">I Cloud</a>
+</div>
+			
+		</div>
+		<div class="col-md-10 column">
+      <div id="templateContent">
+			 <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  <br/>
+  <div style="margin-top:30px;">
+    <div ng-view>
+
+    </div>
+  </div>
+  
+  </div>
+  
+		</div>
+	</div>
+</div>
+</body>
+</html>
