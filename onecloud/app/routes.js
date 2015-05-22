@@ -6,7 +6,7 @@ module.exports = function(app) {
 		
 	});
 //	
-	app.post('/logon', function(req, res) {
+	app.post('/oneclient', function(req, res) {
 		
 		/**
 		 * Supposed to check the user information. 
@@ -17,8 +17,8 @@ module.exports = function(app) {
 		var cookieValue = JSON.stringify({globals: {currentUser:"swaroop"}});
 		res.cookie('globals',cookieValue);
 		
-		//res.sendfile('./public/spa.html');
-		res.redirect('/oneclient');
+		res.sendfile('./public/spa.html');
+		//res.redirect('/oneclient');
 		
 	});
 	
@@ -34,6 +34,11 @@ module.exports = function(app) {
 		
 		console.log("Redirected to spa.html");
 		res.sendfile('./public/spa.html');
+	});
+app.get('/oneclient/dropbox',function(req,res){
+		
+		console.log("GET /oneclient/dropbox ");
+		res.redirect('/oneclient#/dropbox');
 	});
 
 };
