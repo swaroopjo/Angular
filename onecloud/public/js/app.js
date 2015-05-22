@@ -38,6 +38,10 @@ var oneClientApp = angular.module('oneClientApp', ['ngRoute','ngCookies']);
 			.otherwise({redirectTo: '/spa.html'})
 			
 			;
+//		$locationProvider.html5Mode({
+//			  enabled: true,
+//			  requireBase: false
+//			});
 	})
 	// Run functon is executed when the application is first initialized. 
 	//Checks if the cooke exists and also if the user is valid otherwise redirects to login page. 

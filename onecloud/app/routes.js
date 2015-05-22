@@ -17,7 +17,8 @@ module.exports = function(app) {
 		var cookieValue = JSON.stringify({globals: {currentUser:"swaroop"}});
 		res.cookie('globals',cookieValue);
 		
-		res.sendfile('./public/spa.html');
+		//res.sendfile('./public/spa.html');
+		res.redirect('/oneclient');
 		
 	});
 	
@@ -27,6 +28,12 @@ module.exports = function(app) {
 		res.sendfile('./public/spa.html');
 		
 		
+	});
+	
+	app.get('/oneclient',function(req,res){
+		
+		console.log("Redirected to spa.html");
+		res.sendfile('./public/spa.html');
 	});
 
 };
