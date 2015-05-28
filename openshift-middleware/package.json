@@ -1,0 +1,12 @@
+{
+  "name": "openshift-middleware",
+  "main": "server.js",
+  "dependencies": {
+    "express" : "~3.0.0",
+	"mongoose" : "~3.8.0",
+	"body-parser" : "~1.4.2",
+	"method-override" : "~2.0.2",
+	"request" : "~2.55.0"
+  }
+}
+

@@ -1,0 +1,42 @@
+<div class="container-fluid" style="height:800px;" ng-controller="setupController">
+<div class="page-header">
+   <h2>Openshift Accounts Setup 
+      
+   </h2>
+</div>
+<form class="form-inline" role="form">
+   <div class="form-group col-md-2 column">
+      <label class="sr-only" for="userID">User ID</label>
+      <input type="text" class="form-control" ng-model="newAccount.userID" id="userID"  required
+         placeholder="Openshift Account User ID">
+   </div>
+   <div class="form-group">
+      <label class="sr-only" for="password">Password</label>
+      <input type="password" class="form-control" ng-model="newAccount.password" id="password" required
+         placeholder="Openshift Account Password">
+   </div>
+   <button ng-click="authorizeAccount()" class="btn btn-primary">Authorize and Add</button>
+</form>
+<div style="height:10px">
+</div>
+<div ng-show="accounts.length > 0">
+
+<table class="table table-hover">
+   <caption>List of Accounts</caption>
+   <thead>
+      <tr>
+         <th>User ID</th>
+         <th>Status</th>
+         <th>Domain Name</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr ng-repeat="account in accounts">
+         <td>{{account.userID}}</td>
+         <td>{{account.status}}</td>
+         <td>{{account.domainName}}</td>
+      </tr>
+   </tbody>
+</table>
+</div>
+</div>
