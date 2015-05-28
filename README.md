@@ -6,8 +6,15 @@
   For now, The client makes use of 2 API's
   1. Lookup
   2. Stock Quote. 
+  3. Openshift Middleware
+  4. Bitly Client
   
 ## One Cloud
-Single Page Application that allows Users to View/Download the contents in Drive, Dropbox, Skydrive. 
+Single Page Application that allows Users to View/Download the contents in Drive, Dropbox, Skydrive. All in one single UI.
 Uses Cookie to authenticate the user. 
+
+## Openshift Middleware
+Middleware application to manage the Openshift cloud instances. User can start stop, restart the applications in each domain applicable. Users can view, create applications in the domain. 
+Uses Http basic authentication for calling the rest API. 
+Developed with Node JS, ExpressJS, Angular JS. 
 
