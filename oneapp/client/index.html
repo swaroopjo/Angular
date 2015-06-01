@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="oneapp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>One App</title>
+
+    <!-- Core CSS - Include with every page -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Page-Level Plugin CSS - Dashboard -->
+    <link href="resources/css/plugins/timeline/timeline.css" rel="stylesheet">
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="resources/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <div data-ng-include="'layout/views/nav.html'"></div>
+       
+       
+        <!-- /#page-wrapper -->
+        <div ng-view></div>
+    </div>
+    <!-- /#wrapper -->
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="resources/js/jquery-1.10.2.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <!-- Page-Level Plugin Scripts - Dashboard -->
+    
+    <!-- SB Admin Scripts - Include with every page -->
+    <script src="resources/js/sb-admin.js"></script>
+    <script src="MainJS.js"></script>
+    <script src="managepass/controllers/passwordmanager.js"></script>
+
+   
+</body>
+
+</html>
