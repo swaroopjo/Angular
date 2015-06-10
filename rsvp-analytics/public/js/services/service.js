@@ -4,14 +4,16 @@ rsvpAnalytics.factory('solrAPI',function($http,$location,$cookieStore){
 	
 	return {
 		query:function(params,callback){
-			var queryUrl = "/"+params.state+"/select?q="+params.searchText+"&wt=json&indent=true"; 
+				var queryUrl = "/"+params.state+"/select?q="+params.searchText+"&wt=json&indent=true"; 
+				$http.get("http://localhost:8983"+queryUrl).success(function(response){
+					callback(response);
+				}).error(function(error){
+					console.log("Error occured while calling API"+error);
+				});
+			
 			// Example : http://localhost:8983/NJ-core/select?q=*volleyball*&wt=json&indent=true
 			
-			$http.get("http://localhost:8983"+queryUrl).success(function(response){
-				callback(response);
-			}).error(function(error){
-				console.log("Error occured while calling API"+error);
-			});
+			
 		}
 	};
 });

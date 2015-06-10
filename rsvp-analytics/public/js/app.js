@@ -1,11 +1,15 @@
 
-var rsvpAnalytics = angular.module('rsvpAnalytics', ['ngRoute','ngCookies']);
+var rsvpAnalytics = angular.module('rsvpAnalytics', ['ngRoute','ngCookies','tc.chartjs']);
 
 	// configure our routes
 rsvpAnalytics.config(function($routeProvider,$locationProvider) {
 		$routeProvider
 
 			// route for the home page
+		.when('/barchart', {
+			templateUrl : 'views/barchart.html',
+			controller  : 'chartController'
+		})
 			.when('/query', {
 				templateUrl : 'views/query.html',
 				controller  : 'queryController'
